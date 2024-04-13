@@ -44,9 +44,17 @@ namespace SudokuAlgoritmo
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    Console.Write(submatriz[i, j] + " - ");
+                    if(j != 2)
+                    {
+                        Console.Write(submatriz[i, j] + " - ");
+                    }
+                    else
+                    {
+                        Console.Write(submatriz[i, j] + " ");
+                    }
+                    
                 }
-                Console.Write("|");
+                Console.Write("|| ");
                 
             }
             Console.WriteLine();

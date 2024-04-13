@@ -34,7 +34,7 @@ namespace SudokuAlgoritmo
                     Console.Write(m.Display());
 
                 }
-                Console.WriteLine("=======================================");
+                Console.WriteLine("======================================");
             }
         }
     }
