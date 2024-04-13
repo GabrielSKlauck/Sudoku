@@ -32,8 +32,9 @@ namespace SudokuAlgoritmo
                 {
                     m = (Submatriz)grade[i,j];
                     Console.Write(m.Display());
+
                 }
-                
+                Console.WriteLine("=======================================");
             }
         }
     }
