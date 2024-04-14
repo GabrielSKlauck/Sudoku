@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,31 +11,30 @@ namespace SudokuAlgoritmo
     {
         public string localizacao { get; set; }
         public static int[,] submatriz = new int[3, 3];
-        public static List<int> numerosDisponiveis = new List<int>();
+        public static List<int> numerosDisponiveis = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        public static SortedList<string, int> posicaoInviolavel = new SortedList<string, int>();
 
         public Submatriz(string local) { 
-            this.localizacao = local;
-            for (int i = 1; i < 10; i++)
-            {
-                numerosDisponiveis.Add(i);
-            }
+            this.localizacao = local;           
             InitializeSubmatriz();
         }
 
         private static void InitializeSubmatriz()
         {
+            
             Random random = new Random();
-            int aleatorioI;
-            int aleatorioJ;
-            int numAleatorio;
+            int aleatorioI, aleatorioJ, numAleatorio;
 
             for (int i = 0; i < 3; i++)
             {
-                aleatorioI = random.Next(0,3);
-                aleatorioJ = random.Next(0,3);
-                numAleatorio = numerosDisponiveis[random.Next(numerosDisponiveis.Count())];
-                submatriz[aleatorioI, aleatorioJ] = numAleatorio;
-                numerosDisponiveis.Remove(numAleatorio);               
+                do {
+                    aleatorioI = random.Next(0, 3);
+                    aleatorioJ = random.Next(0, 3);
+                } while (posicaoInviolavel.ContainsKey(aleatorioI+""+aleatorioJ));
+
+                numAleatorio = numerosDisponiveis[random.Next(numerosDisponiveis.Count)];
+                posicaoInviolavel.Add(aleatorioI+""+aleatorioJ, numAleatorio);
+                numerosDisponiveis.Remove(numAleatorio);
             }
         }
 
